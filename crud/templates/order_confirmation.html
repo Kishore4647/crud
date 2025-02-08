@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <!-- Link to Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f4f8fb;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #ff6f61;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #ff6f61;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .order-details {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .order-details h3 {
+            color: #333;
+            font-weight: bold;
+        }
+
+        .order-summary {
+            background-color: #eef2f3;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .btn-confirmation {
+            background-color: #28a745;
+            color: white;
+            font-size: 14px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            width: 150px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .btn-confirmation:hover {
+            background-color: #218838;
+        }
+
+        .order-confirmation-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .order-confirmation-header h2 {
+            color: #ff6f61;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="order-confirmation-header">
+            <h1>Order Confirmation</h1>
+            <p class="lead">Thank you for your order! We will deliver it to the following address:</p>
+        </div>
+
+        <div class="order-details">
+            <h4>Delivery Address: <strong style="color: green;">{{ address }}</strong></h4>
+            
+        </div>
+
+        <div class="order-details">
+            <h4>Food Items Ordered:  <strong  style="color:green;">{{ receipe_name }}</strong></h4>
+            
+        </div>
+
+        <div class="order-summary">
+            <h4>Total Price:  <strong  style="color:green;">Rs.{{ total_price }}</strong></h4>
+            
+        </div>
+
+        <div class="order-details">
+            <p>Your order is being processed and will arrive shortly. You will be notified once it's on the way!</p>
+        </div>
+
+        <div class="text-center">
+            <button class="btn-confirmation" onclick="window.location.href='/home'">Back to Home</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 Your Company. All rights reserved.</p>
+    </div>
+
+    <!-- Link to Bootstrap JS and jQuery (for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
