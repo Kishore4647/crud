@@ -1,0 +1,204 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency Vehicle</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <style>
+        #traffic-light {
+  /* position: absolute; */
+  /* display:block; */
+  /* left: 50%;
+  top: 50%;  */
+  /* margin-left: -60px;
+  margin-top: -160px; */
+  background-color:#333;
+  width:50px;
+  height:106px;
+  border-radius:30px;
+}
+
+input[type=radio] {
+  appearance: none;
+  position: relative;
+  left: 50%;
+  width:20px;
+  height:20px;
+  /* margin-top: 20px;
+  margin-left:-40px; */
+  margin: 30% 0 25% -20%;
+  background-color: grey;
+  vertical-align: middle;
+  border-radius: 100%;
+  display: block;
+}
+    </style>
+</head>
+<body>
+    <div class="row ">
+        <form class="d-flex justify-content-center" id="form1" action="{% url 'detect_media' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label class="btn btn-primary">
+                <span>Browse</span>
+                <input type="file" class="d-none" name="media" onchange="submitForm('form1')">
+            </label>
+            <!-- <button type="submit" class="btn btn-primary">Upload</button> -->
+        </form>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            <form class="d-flex align-content-center" id="form4" action="{% url 'detect_media' %}" style="margin-top: 120%; margin-left: 50%;" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="btn btn-primary">
+                    <span>Browse</span>
+                    <input type="file" class="d-none" name="media" onchange="submitForm('form4')">
+                </label>
+                <!-- <button type="submit" class="btn btn-primary">Upload</button> -->
+            </form>
+        </div>
+        <div class="col-8" >
+            <div class="d-flex justify-content-center" style="position: relative; width: 100%;">
+                <img src="{% static 'bg.jpg' %}" alt="" style="width: 62%;">
+                <div class="" style="position: absolute; width: 100%;">
+                    <div class="row">
+                        <div class="col-2">
+                            <p>Signal 4</p>
+                            <div id="traffic-light">
+                                <input type="radio" name="traffic-light-color" id="s4color1" value="color1" style="background-color: red;"/>
+                                <input type="radio" name="light-color" id="s4color2" value="color2"/>
+                                <input type="radio" name="light-color" id="s4color3" value="colo3" />
+                              </div>
+                        </div>
+                    <div class="col-8 d-flex justify-content-center">    
+                    <div class="" id="road1" style="height: 150px;width: 180px;">
+                    </div>
+                    </div>
+                    <div class="col-2">
+                        <p>Signal 1</p>
+                        <div id="traffic-light">
+                            <input type="radio" name="traffic-light-color" id="s1color1" value="color1"/>
+                            <input type="radio" name="light-color" id="s1color2" value="color2"/>
+                            <input type="radio" name="light-color" id="s1color3" value="colo3" style="background-color: rgb(4, 255, 4);" />
+                          </div>
+                    </div>
+                    </div><br><br>
+                    <div class="row">
+                    <div class="col-6 d-flex justify-content-start">    
+                    <div class="" id="road4" style="height: 150px;width: 180px;">
+                    </div>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end ">
+                    <div class="" id="road2"style="height: 150px;width: 180px;">
+                    </div>
+                    </div>
+                    </div><br><br>
+                    <div class="row">
+                        <div class="col-2">
+                            <p>Signal 3</p>
+                            <div id="traffic-light">
+                                <input type="radio" name="traffic-light-color" id="s3color1" value="color1" style="background-color: red;"/>
+                                <input type="radio" name="light-color" id="s3color2" value="color2"/>
+                                <input type="radio" name="light-color" id="s3color3" value="colo3" />
+                              </div>
+                        </div>
+                    <div class="col-8 d-flex justify-content-center">    
+                    <div class="" id="road3" style="height: 150px;width: 180px;">
+                    </div>
+                    </div>
+                    <div class="col-2">
+                        <p>Signal 2</p>
+                        <div id="traffic-light">
+                            <input type="radio" name="traffic-light-color" id="s2color1" value="color1" style="background-color: red;"/>
+                            <input type="radio" name="light-color" id="s2color2" value="color2"/>
+                            <input type="radio" name="light-color" id="s2color3" value="colo3" />
+                          </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 d-flex align-content-center justify-content-end">
+            <form action="{% url 'detect_media' %}" method="post" id="form2" enctype="multipart/form-data" style="margin-top: 120%; margin-right: 70%;">
+                {% csrf_token %}
+                <label class="btn btn-primary">
+                    <span>Browse</span>
+                    <input type="file" class="d-none" name="media" onchange="submitForm('form2')">
+                </label>
+                <!-- <button type="submit" class="btn btn-primary">Upload</button> -->
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="d-flex justify-content-center align-items-end" style="height: 80vh;">
+            <form   class="mb-5" action="{% url 'detect_media' %}" method="post" id="form3" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label class="btn btn-primary">
+                    <span>Browse</span>
+                    <input type="file" class="d-none" name="media" onchange="submitForm('form3')">
+                </label>
+                <!-- <button type="submit" class="btn btn-primary">Upload</button> -->
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function submitForm(formId) {
+            document.getElementById(formId).submit();
+        }
+        console.log('hello', '{{ data }}');
+
+        document.addEventListener('DOMContentLoaded', function() {
+        try {
+         var data1 = '{{data}}' 
+         console.log(data1)      
+ 
+
+            if (data1 === 'road1') {
+                document.querySelectorAll('[name="traffic-light-color"]').forEach(function(btn) {
+                btn.style.backgroundColor = 'red';
+            });
+                document.getElementById('s1color3').style.backgroundColor = 'rgb(4, 255, 4)';
+                document.getElementById('s1color1').style.backgroundColor = '';
+                document.getElementById('s3color3').style.backgroundColor = '';
+                document.getElementById('s2color3').style.backgroundColor = '';
+                document.getElementById('s4color3').style.backgroundColor = '';
+            } else if (data1 === 'road2') {
+                document.querySelectorAll('[name="traffic-light-color"]').forEach(function(btn) {
+                btn.style.backgroundColor = 'red';
+            });
+                document.getElementById('s2color3').style.backgroundColor = 'rgb(4, 255, 4)';
+                document.getElementById('s2color1').style.backgroundColor = '';
+                document.getElementById('s1color3').style.backgroundColor = '';
+                document.getElementById('s3color3').style.backgroundColor = '';
+                document.getElementById('s4color3').style.backgroundColor = '';
+            } else if (data1 === 'road3') {
+                document.querySelectorAll('[name="traffic-light-color"]').forEach(function(btn) {
+                btn.style.backgroundColor = 'red';
+            });
+                document.getElementById('s3color3').style.backgroundColor = 'rgb(4, 255, 4)';
+                document.getElementById('s3color1').style.backgroundColor = '';
+                document.getElementById('s1color3').style.backgroundColor = '';
+                document.getElementById('s2color3').style.backgroundColor = '';
+                document.getElementById('s4color3').style.backgroundColor = '';
+            } else if (data1 === 'road4') {
+                document.querySelectorAll('[name="traffic-light-color"]').forEach(function(btn) {
+                btn.style.backgroundColor = 'red';
+            });
+                document.getElementById('s4color3').style.backgroundColor = 'rgb(4, 255, 4)';
+                document.getElementById('s4color1').style.backgroundColor = '';
+                document.getElementById('s1color3').style.backgroundColor = '';
+                document.getElementById('s2color3').style.backgroundColor = '';
+                document.getElementById('s3color3').style.backgroundColor = '';
+            }
+        } catch(err) {
+            console.log('Error:', err);
+        }
+
+    });   
+    </script>
+</body>
+</html>
